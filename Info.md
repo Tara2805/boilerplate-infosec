@@ -19,3 +19,10 @@ Browsers can use content or MIME sniffing to override the Content-Type header of
 
 ##Prevent IE from Opening Untrusted HTML with helmet.ieNoOpen()##
 Some web applications will serve untrusted HTML for download. Some versions of Internet Explorer by default open those HTML files in the context of your site. This means that an untrusted HTML page could start doing bad things in the context of your pages. This middleware sets the X-Download-Options header to noopen. This will prevent IE users from executing downloads in the trusted site's context.
+
+##Ask Browsers to Access Your Site via HTTPS Only with helmet.hsts()##
+HTTP Strict Transport Security (HSTS) is a web security policy which helps to protect websites against protocol downgrade attacks and cookie hijacking. If your website can be accessed via HTTPS you can ask user’s browsers to avoid using insecure HTTP. By setting the header Strict-Transport-Security, you tell the browsers to use HTTPS for the future requests in a specified amount of time. This will work for the requests coming after the initial request.
+
+Configure helmet.hsts() to use HTTPS for the next 90 days. Pass the config object {maxAge: timeInSeconds, force: true}. You can create a variable ninetyDaysInSeconds = 90*24*60*60; to use for the timeInSeconds. Gitpod already has hsts enabled. To override its settings you need to set the field "force" to true in the config object. We will intercept and restore the Gitpod header, after inspecting it for testing.
+
+Note: Configuring HTTPS on a custom website requires the acquisition of a domain, and an SSL/TLS Certificate.
