@@ -13,3 +13,6 @@ The basic rule to lower the risk of an XSS attack is simple: "Never trust user's
 Modern browsers can help mitigating the risk by adopting better software strategies. Often these are configurable via http headers.
 
 The X-XSS-Protection HTTP header is a basic protection. The browser detects a potential injected script using a heuristic filter. If the header is enabled, the browser changes the script code, neutralizing it. It still has limited support.
+
+##Avoid Inferring the Response MIME Type with helmet.noSniff()##
+As a reminder, this project is being built upon the following starter project on Gitpod, or cloned from GitHub. Browsers can use content or MIME sniffing to override the Content-Type header of a response to guess and process the data using an implicit content type. While this can be convenient in some scenarios, it can also lead to some dangerous attacks. This middleware sets the X-Content-Type-Options header to nosniff, instructing the browser to not bypass the provided Content-Type.
